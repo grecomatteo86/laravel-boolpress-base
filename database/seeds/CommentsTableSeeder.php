@@ -19,6 +19,7 @@ class CommentsTableSeeder extends Seeder
 
         // 2. ciclo sui posts pubblicati per generare i commenti random (da 1 a 3)
         foreach($posts as $post){
+            
             // 3.  Non tutti i post devono per forza avere dei commenti, possono anche non averne (se i = 0)
             for($i = 0; $i < rand(0, 3); $i++){
 
