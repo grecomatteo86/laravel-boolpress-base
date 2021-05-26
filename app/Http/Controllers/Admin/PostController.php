@@ -90,7 +90,9 @@ class PostController extends Controller
         //dd($post);
 
         //se volessi accedere ai commenti di un post
-        dd($post->comments);
+        // dd($post->comments);
+
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
