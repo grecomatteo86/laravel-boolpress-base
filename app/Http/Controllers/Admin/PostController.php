@@ -107,7 +107,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+
+        $tags = Tag::all();
+
+        return view('admin.posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -135,6 +138,9 @@ class PostController extends Controller
 
         //update
         $post->update($data);
+
+        // aggiorno i tags
+        $post->tags()->sync($data['tags']);
 
         //return
         return redirect()->route('admin.posts.show', $post);
