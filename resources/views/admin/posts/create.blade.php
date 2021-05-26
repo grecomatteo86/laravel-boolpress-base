@@ -16,6 +16,9 @@
     </div>
 @endif
 
+{{-- verifico se mi arrivano i tags
+@dump($tags); --}}
+
 <form action="{{route('admin.posts.store')}}" method="POST">
 	@csrf
 	@method('POST')
@@ -39,6 +42,21 @@
 		<input class="form-check-input" type="checkbox" id="published" name="published">
 		<label class="form-check-label" for="published">Pubblicato</label>
 	</div>
+
+	{{-- stampo i tags --}}
+	<div class="mt-3">
+		<h3>Tags</h3>
+		@foreach ($tags as $tag)
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="{{$tag->name}}" name="tags[]">
+				<label class="form-check-label" for="{{$tag->name}}">
+					{{$tag->name}}
+				</label>
+			</div>
+		@endforeach
+	</div>
+	{{-- stampo i tags --}}
+
 	<div class="mt-3">
 		<button type="submit" class="btn btn-primary">Crea</button>
 	</div>

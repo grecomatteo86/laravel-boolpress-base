@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
@@ -41,7 +42,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+
+        // mi prendo tutti i tag dal db
+        $tags = Tag::all();
+
+        return view('admin.posts.create', compact('tags'));
     }
 
     /**
@@ -52,7 +57,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // verifico i tags che mi arrivano, che possono anche essere null
+        dd($request->all());
+
+        $validation = $this->validation;
+        $validation['title'] = 'required|string|max:255|unique:posts';
 
         // validation
         $request->validate($this->validation);
