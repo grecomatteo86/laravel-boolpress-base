@@ -107,8 +107,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
+        $validation = $this->validation;
+        $validation['title'] = $validation['title'] . ',title,' . $post->id;
+
         // validation
-        $request->validate($this->validation);
+        $request->validate($validation);
 
         $data = $request->all();
         
@@ -121,7 +125,7 @@ class PostController extends Controller
         $post->update($data);
 
         //return
-        return redirect()->route('admnin.posts.show', $post);
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**
