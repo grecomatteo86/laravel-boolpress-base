@@ -58,7 +58,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // verifico i tags che mi arrivano, che possono anche essere null
-        dd($request->all());
+        // dd($request->all());
 
         $validation = $this->validation;
         $validation['title'] = 'required|string|max:255|unique:posts';
@@ -74,7 +74,10 @@ class PostController extends Controller
         $data['slug'] = Str::slug($data['title'], '-');
 
         // Insert
-        Post::create($data);    
+        $newPost = Post::create($data);
+        
+        // aggiungo i tags
+        $newPost->tags()->attach($data['tags']);
 
         // redirect
         return redirect()->route('admin.posts.index');
