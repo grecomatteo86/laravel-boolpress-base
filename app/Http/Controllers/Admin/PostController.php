@@ -47,7 +47,7 @@ class PostController extends Controller
 
         // validation
         $request->validate([
-            'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255|unique:posts',
             'date' => 'required|date',
             'content' => 'required|string',
             'image' => 'nullable|url'
