@@ -56,23 +56,11 @@ class PostController extends Controller
         $data = $request->all();
         
         // controllo checkbox
-        if ( !isset($data['published']) ) {
-            $data['published'] = false;
-        } else {
-            $data['published'] = true;
-        }
+        $data['published'] = !isset($data['published']) ? 0 : 1;
         // imposto lo slug partendo dal title
         $data['slug'] = Str::slug($data['title'], '-');
 
         // Insert
-        // $newPost = new Post();
-        // $newPost->title = $data['title'];
-        // $newPost->date = $data['date']; 
-        // $newPost->content = $data['content'];
-        // $newPost->image = $data['image'];
-        // $newPost->slug = Str::slug($data['title'], '-');
-        // $newPost->published = $data['published'];
-        // $newPost->save();
         Post::create($data);    
 
         // redirect
