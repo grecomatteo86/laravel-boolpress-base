@@ -16,8 +16,13 @@ class PostController extends Controller
      */
     public function index()
     {
+        // $posts = Post::all();
+        // dd($posts);
+
+        // query per prendere tutti i post
         $posts = Post::all();
-        dd($posts);
+        // return della view iniettando i posts
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
