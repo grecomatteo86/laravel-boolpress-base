@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use App\Tag;
 
 class BlogController extends Controller
 {
@@ -12,8 +13,9 @@ class BlogController extends Controller
 
         // prendo i dati dal db
         $posts = Post::where('published', 1)->orderBy('date', 'asc')->limit(5)->get();
+        $tags = Tag::all();
         // restituisco la pagina home
-        return view('guest.index', compact('posts'));
+        return view('guest.index', compact('posts', 'tags'));
 
     }
 
@@ -21,12 +23,13 @@ class BlogController extends Controller
     {
         // prendo i dati dal db
         $post = Post::where('slug', $slug)->first();
+        $tags = Tag::all();
         
         if ( $post == null ) {
             abort(404);
         }
         // restituisco la pagina del post
-        return view('guest.show', compact('post'));
+        return view('guest.show', compact('post', 'tags'));
     }
 
     public function addComment(Request $request, Post $post)
