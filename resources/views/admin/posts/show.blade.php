@@ -28,7 +28,9 @@
 					<p>{{$comment->content}}</p>
 
 					<div>
-						<form action="">
+						<form action="{{route('admin.comments.destroy', [ 'comment' => $comment->id ])}}" method="POST">
+							@csrf
+							@method('DELETE')
 							<button type="submit" class="btn btn-danger">Elimina il commento</button>
 						</form>
 					</div>
@@ -39,4 +41,16 @@
 	</div>
 	@endif
 	<a href="{{route('admin.posts.index')}}">Torna alla lista degli articoli</a>
+	
+	{{-- stampa del messaggio --}}
+	@if (session('message'))
+    <div class="alert alert-success" style="position: fixed; bottom: 30px; right: 30px">
+        {{ session('message') }}
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+    </div>
+	@endif
+	{{-- stampa del messaggio --}}
+
 @endsection

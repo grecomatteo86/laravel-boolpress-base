@@ -20,4 +20,5 @@ Route::post('posts/{post}/add-comment', 'BlogController@addComment')->name('gues
 
 Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
     Route::resource('posts', 'PostController');
+    Route::delete('comments/{comment}', 'CommentController@destroy')->name('comments.destroy');
 });
