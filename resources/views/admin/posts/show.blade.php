@@ -26,6 +26,13 @@
 				<li>
 					<h5>{{$comment->name ? $comment->name : 'Anonimo'}}</h5>
 					<p>{{$comment->content}}</p>
+
+					<div>
+						<form action="">
+							<button type="submit" class="btn btn-danger">Elimina il commento</button>
+						</form>
+					</div>
+
 				</li>
 			@endforeach
 		</ul>
