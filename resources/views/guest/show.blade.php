@@ -23,10 +23,12 @@
 			@endforeach
 		</ul>
 		@endif
-
+		
 		<h3>Aggiungi Commento</h3>
 
-		<form action="{{}}">
+		<form action="{{route('guest.posts.add-comment', ['post' => $post->id])}}" method="post">
+			@csrf
+			@method('POST')
 			<div class="form-group">
 				<label for="title">Nome</label>
 				<input type="text" class="form-control" id="name" name="name" placeholder="Nome">

@@ -28,4 +28,11 @@ class BlogController extends Controller
         return view('guest.show', compact('post'));
     }
 
+    public function addComment(Request $request)
+    {
+
+        dd($request->all());
+
+    }
+
 }
