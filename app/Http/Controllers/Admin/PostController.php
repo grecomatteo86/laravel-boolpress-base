@@ -58,13 +58,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // verifico i tags che mi arrivano, che possono anche essere null
-        // dd($request->all());
+        //dd($request->all());
 
         $validation = $this->validation;
         $validation['title'] = 'required|string|max:255|unique:posts';
 
         // validation
-        $request->validate($this->validation);
+        $request->validate($validation);
 
         $data = $request->all();
         
@@ -77,7 +77,12 @@ class PostController extends Controller
         $newPost = Post::create($data);
         
         // aggiungo i tags
-        $newPost->tags()->attach($data['tags']);
+        if(isset($data['tags'])){
+
+            // con questo controllo se l'utente non seleziona nessun tag posso andare avnti col programma, altrimenti tags risulta indefinito
+            $newPost->tags()->attach($data['tags']);
+
+        }
 
         // redirect
         return redirect()->route('admin.posts.index');
@@ -140,6 +145,10 @@ class PostController extends Controller
         $post->update($data);
 
         // aggiorno i tags
+        if(!isset($data['tags'])){
+            //con questo controllo il programma mi va avanti anche se nella modifica l'utente toglie i tag precedentemente selezionati e non ne aggiunge piu nessuno
+            $data['tags'] = [];
+        }
         $post->tags()->sync($data['tags']);
 
         //return
