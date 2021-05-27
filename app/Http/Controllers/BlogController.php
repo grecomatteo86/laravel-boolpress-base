@@ -32,6 +32,27 @@ class BlogController extends Controller
         return view('guest.show', compact('post', 'tags'));
     }
 
+    public function filterTag($slug)
+    {
+
+        //dd($slug);
+
+        $tags = Tag::all();
+        $tag = Tag::where('slug', $slug)->first();
+
+        //dd($tag->posts);
+
+        if ( $tag == null ) {
+            abort(404);
+        }
+
+        $posts = $tag->posts()->where('published', 1)->get();
+
+        // restituisco la pagina home
+        return view('guest.index', compact('posts', 'tags'));
+    }
+
+
     public function addComment(Request $request, Post $post)
     {
 

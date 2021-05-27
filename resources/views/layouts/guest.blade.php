@@ -33,7 +33,7 @@
 				{{-- @dump($tags); --}}
 
 				@foreach ($tags as $tag)
-				<a class="p-2 text-muted" href="">{{$tag->name}}</a>
+				<a class="p-2 text-muted" href="{{route('guest.posts.filter-tag', ['slug' => $tag->slug])}}">{{$tag->name}}</a>
 				@endforeach
 
 			  </nav>
