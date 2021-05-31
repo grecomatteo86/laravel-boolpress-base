@@ -74,7 +74,7 @@ class BlogController extends Controller
         $newComment->save();
 
         //invio mail di notifica
-        Mail::to('mail@mail.it')->send(new CommentMail());
+        Mail::to('mail@mail.it')->send(new CommentMail($post));
 
         return back();
     }
