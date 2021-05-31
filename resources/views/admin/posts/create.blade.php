@@ -19,7 +19,7 @@
 {{-- verifico se mi arrivano i tags
 @dump($tags); --}}
 
-<form action="{{route('admin.posts.store')}}" method="POST">
+<form action="{{route('admin.posts.store')}}" method="POST" enctype="multipart/form-data">
 	@csrf
 	@method('POST')
 	<div class="form-group">
@@ -36,7 +36,8 @@
 	</div>
 	<div class="form-group">
 		<label for="image">Immagine</label>
-		<input type="text" class="form-control" id="image" name="image" placeholder="Image">
+		{{-- <input type="text" class="form-control" id="image" name="image" placeholder="Image"> --}}
+		<input type="file" name="image" id="image" placeholder="Image">
 	</div>
 	<div class="form-check form-check-inline">
 		<input class="form-check-input" type="checkbox" id="published" name="published">
