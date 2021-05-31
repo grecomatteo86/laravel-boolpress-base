@@ -147,6 +147,11 @@ class PostController extends Controller
         // imposto lo slug partendo dal title
         $data['slug'] = Str::slug($data['title'], '-');
 
+        //update file immagine
+        if(isset($data['image'])){
+            $data['image'] = Storage::disk('public')->put('images', $data['image']);
+        }
+
         //update
         $post->update($data);
 
