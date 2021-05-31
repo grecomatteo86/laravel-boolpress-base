@@ -7,6 +7,7 @@ use App\Post;
 use App\Tag;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -72,6 +73,11 @@ class PostController extends Controller
         $data['published'] = !isset($data['published']) ? 0 : 1;
         // imposto lo slug partendo dal title
         $data['slug'] = Str::slug($data['title'], '-');
+
+        //upload file immagine
+        if(isset($data['image'])){
+            $data['image'] = Storage::disk('public')->put('images', $data['image']);
+        }
 
         // Insert
         $newPost = Post::create($data);
