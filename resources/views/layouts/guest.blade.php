@@ -26,24 +26,17 @@
 				</div>
 			  </div>
 			</header>
-	  
 			<div class="nav-scroller py-1 mb-2">
 			  <nav class="nav d-flex justify-content-between">
-
-				{{-- @dump($tags); --}}
-
 				@foreach ($tags as $tag)
 				<a class="p-2 text-muted" href="{{route('guest.posts.filter-tag', ['slug' => $tag->slug])}}">{{$tag->name}}</a>
 				@endforeach
-
 			  </nav>
 			</div>
 		  </div>
-	  
 		  <main role="main" class="container">
 			@yield('content')
 		  </main><!-- /.container -->
-	  
 		  <footer class="blog-footer">
 			<p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
 			<p>

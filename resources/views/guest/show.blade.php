@@ -1,16 +1,12 @@
 @extends('layouts.guest')
-
 @section('pageTitle')
 	{{$post->title}}
 @endsection
-
 @section('content')
 <div class="mt-3">
 	<h1>{{$post->title}}</h1>
 	<h4>{{$post->date}}</h4>
 	<p>{{$post->content}}</p>
-
-	
 	<div class="mt-5">
 		@if ($post->comments->isNotEmpty())
 		<h3>Commenti</h3>
@@ -23,9 +19,7 @@
 			@endforeach
 		</ul>
 		@endif
-		
 		<h3>Aggiungi Commento</h3>
-
 		<form action="{{route('guest.posts.add-comment', ['post' => $post->id])}}" method="post">
 			@csrf
 			@method('POST')
@@ -41,8 +35,6 @@
 				<button type="submit" class="btn btn-primary">Inserisci</button>
 			</div>
 		</form>
-
 	</div>
-	
 </div>
 @endsection

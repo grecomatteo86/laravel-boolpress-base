@@ -9,7 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-
     <div class="container mt-5">
         <h1>@yield('pageTitle')</h1>
         <div class="mt-5">
