@@ -1,11 +1,8 @@
 @extends('layouts.base')
-
 @section('pageTitle')
 	Modifica: {{$post->title}}
 @endsection
-
 @section('content')
-
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -15,7 +12,6 @@
         </ul>
     </div>
 @endif
-
 <form action="{{route('admin.posts.update', ['post' => $post->id])}}" method="POST" enctype="multipart/form-data">
 	@csrf
 	@method('PUT')
@@ -40,14 +36,8 @@
 		<input class="form-check-input" type="checkbox" id="published" name="published" {{$post->published ? 'checked' : ''}}>
 		<label class="form-check-label" for="published">Pubblicato</label>
 	</div>
-
-	{{-- possibilità di modificare i tags --}}
 	<div class="mt-3">
 		<h3>Tags</h3>
-
-		{{-- per vedere i tags che mi arrivano
-		@dump($post->tags); --}}
-
 		@foreach ($tags as $tag)
 			<div class="form-check">
 				<input class="form-check-input" type="checkbox" value="{{$tag->id}}" id="{{$tag->name}}" name="tags[]" {{ $post->tags->contains($tag) ? 'checked' : '' }}>
@@ -57,11 +47,8 @@
 			</div>
 		@endforeach
 	</div>
-	{{-- possibilità di modificare i tags --}}
-
 	<div class="mt-3">
 		<button type="submit" class="btn btn-primary">Modifica</button>
 	</div>
 </form>
-	
 @endsection

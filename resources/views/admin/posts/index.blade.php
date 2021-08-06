@@ -1,11 +1,8 @@
 @extends('layouts.base')
-
 @section('pageTitle')
 	Lista Articoli
 @endsection
-
 @section('content')
-
 <div class="mb-3 text-right">
 	<a href="{{route('admin.posts.create')}}"><button type="button" class="btn btn-success"><i class="fas fa-plus-square"></i> Aggiungi Post</button></a>
 </div>
