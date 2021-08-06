@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\Tag;
-
 class TagsTableSeeder extends Seeder
 {
     /**
@@ -21,15 +19,10 @@ class TagsTableSeeder extends Seeder
             'vuejs',
             'laravel'
         ];
-
-        // creo tanti tags quanti ne ho definiti nell'array con un foreach
         foreach($tags as $tag) {
-
             $newTag = new Tag();
-
             $newTag->name = $tag;
             $newTag->slug = Str::slug($tag, '-');
-            
             $newTag->save();
         }
     }
